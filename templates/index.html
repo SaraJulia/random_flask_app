@@ -1,0 +1,26 @@
+<html>
+
+<head>
+
+    <title>RandomNumberApp</title>
+
+    <style>
+    </style>
+
+</head>
+
+<body>
+
+    <form action="/result">
+    <button id="random-number-button"> 
+        Get a random number! </button>
+    </form>
+
+    {% if rando: %}
+    <div id="show_number"> Your random number is: {{ rando }}</div>
+    {% endif %}
+
+
+</body>
+
+</html>
