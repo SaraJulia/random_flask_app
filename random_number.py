@@ -1,39 +1,55 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import random
 
 app = Flask(__name__)
+app.secret_key = '\xf5!\x07!qj\xa4\x08\xc6\xf8\n\x8a\x95m\xe2\x04g\xbb\x98|U\xa2f\x03'
+
 
 @app.route("/")
 def show_index():
+
+    # set up a new game by setting guess count to 0, and
+    # setting a random number
+    rand_num = random.randint(0, 100)
+    session['rand_num'] = rand_num
+    print "The answer is: ", rand_num
+    session['count'] = 0
     
     return render_template("index.html")
 
 @app.route("/result")
 def check_guess():
-    rando = random.randint(0, 100)
-    print rando
+    
+    guess = int(request.args.get("guess"))
+    print "the guess is: ",guess
+    print "the type of the guess is:", type(guess)
 
-    count = 0
+    rand_num = session['rand_num']
+    print "random number from check_guess is:", rand_num
+    print "the type of the randome number is:", type(rand_num)
 
-    guess = request.args.get("guess")
+    if session['count'] < 10:
 
-    while count < 11:
-        if guess != rando:
-            count += 1
-            if guess > rando:
-                return render_template("index.html", 
-                                    response='Too high. Try again!',
-                                    count=count)
-            elif guess < rando:
-                return render_template("index.html", 
-                                    response='Too low. Try again!',
-                                    count=count)
-        else:
+        if guess == rand_num:
             return render_template("index.html", 
                                     response='Hooray! You win.',
-                                    count=count)
+                                    count=session['count'])
 
-    return render_template("index.html",
+        else:
+
+            print guess, "!=", rand_num
+            session['count'] += 1
+            if guess > rand_num:
+                return render_template("index.html", 
+                                    response='Too high. Try again!',
+                                    count=session['count'])
+            elif guess < rand_num:
+                return render_template("index.html", 
+                                    response='Too low. Try again!',
+                                    count=session['count'])
+        
+    else:
+        return render_template("index.html",
                             response='You lose.')
 
 
