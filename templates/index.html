@@ -1,0 +1,30 @@
+<html>
+<head>
+	
+	<title>Guessing Game!</title>
+	<script src="/static/jquery.js"></script>
+
+</head>
+<body>
+
+	<h1>Guessing Game!</h1>
+
+	<form action="/result">
+
+		Guess a number between 0 and 100:  
+		<input type="text" id="guess" name="guess">
+		<button type="button" id="guess-submit">Guess!</button>
+	
+	</form>
+
+	{% if response: %}
+	<div id="hint">
+
+		{{ response }}
+		You have used {{ count }}/10 guesses.
+	
+	</div>
+	{% endif %}
+
+</body>
+</html>
