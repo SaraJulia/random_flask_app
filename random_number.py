@@ -21,12 +21,12 @@ def show_index():
 def check_guess():
     
     guess = int(request.args.get("guess"))
-    print "the guess is: ",guess
-    print "the type of the guess is:", type(guess)
+    # print "the guess is: ",guess
+    # print "the type of the guess is:", type(guess)
 
     rand_num = session['rand_num']
-    print "random number from check_guess is:", rand_num
-    print "the type of the randome number is:", type(rand_num)
+    # print "random number from check_guess is:", rand_num
+    # print "the type of the randome number is:", type(rand_num)
 
     if session['count'] < 10:
 

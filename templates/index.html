@@ -9,7 +9,7 @@
 
 	<h1>Guessing Game!</h1>
 
-	<form action="/result">
+	<form id="guessing-game" > <!--action="/result"-->
 
 		Guess a number between 0 and 100:  
 		<input type="text" id="guess" name="guess">
@@ -17,14 +17,31 @@
 	
 	</form>
 
-	{% if response: %}
 	<div id="hint">
+<!-- 	{% if response: %}
 
 		{{ response }}
 		You have used {{ count }}/10 guesses.
 	
+	{% endif %} -->
 	</div>
-	{% endif %}
+
+	<script>
+
+		$("#guessing-game").on('submit', function(event){
+
+			event.preventDefault();
+
+			//alert("I'm running!");
+
+			var url = "/result?" + $("#guessing-game").serialize();
+
+			console.log(url);
+
+			$("#hint").load(url);
+		});
+
+	</script>
 
 </body>
 </html>
