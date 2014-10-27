@@ -3,6 +3,7 @@
 	
 	<title>Guessing Game!</title>
 	<script src="/static/jquery.js"></script>
+	<link rel="stylesheet" href="/static/bootstrap.min.css"
 
 </head>
 <body>
@@ -18,21 +19,21 @@
 	</form>
 
 	<div id="hint">
-<!-- 	{% if response: %}
+	{% if response: %}
 
 		{{ response }}
 		You have used {{ count }}/10 guesses.
 	
-	{% endif %} -->
+	{% endif %}
 	</div>
 
 	<script>
 
-		$("#guessing-game").on('submit', function(event){
+		$("#guess-submit").on('click', function(event){
 
 			event.preventDefault();
 
-			//alert("I'm running!");
+			console.log("I'm running!");
 
 			var url = "/result?" + $("#guessing-game").serialize();
 
