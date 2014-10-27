@@ -31,7 +31,7 @@ def check_guess():
     if session['count'] < 10:
 
         if guess == rand_num:
-            return render_template("index.html", 
+            return render_template("result.html", 
                                     response='Hooray! You win.',
                                     count=session['count'])
 
@@ -40,16 +40,16 @@ def check_guess():
             print guess, "!=", rand_num
             session['count'] += 1
             if guess > rand_num:
-                return render_template("index.html", 
+                return render_template("result.html", 
                                     response='Too high. Try again!',
                                     count=session['count'])
             elif guess < rand_num:
-                return render_template("index.html", 
+                return render_template("result.html", 
                                     response='Too low. Try again!',
                                     count=session['count'])
         
     else:
-        return render_template("index.html",
+        return render_template("result.html",
                             response='You lose.')
 
 
